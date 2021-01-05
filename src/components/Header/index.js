@@ -15,8 +15,13 @@ const Header = props => {
                 <div className="callToActions">
                     <ul>
                         <li>
-                            <Link to="registration">
+                            <Link to="/registration">
                                 Register
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/login">
+                                Log In
                             </Link>
                         </li>
                     </ul>

@@ -1,10 +1,11 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-
 import './default.scss';
-import Header from "./components/Header";
+
 import Homepage from "./pages/Homepage";
 import Registration from "./pages/Registration";
+import Login from "./pages/Login";
+
 import MainLayout from "./layouts/MainLayout";
 import HomepageLayout from "./layouts/Homepagelayout";
 
@@ -20,6 +21,11 @@ function App() {
                 <Route path="/registration" render={() => (
                     <MainLayout>
                         <Registration/>
+                    </MainLayout>
+                )}/>
+                <Route path="/login" render={() => (
+                    <MainLayout>
+                        <Login/>
                     </MainLayout>
                 )}/>
             </Switch>

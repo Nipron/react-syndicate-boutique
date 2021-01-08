@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import './styles.scss';
 import Logo from '../../assets/syndboutique.png';
 import {Link} from 'react-router-dom';
@@ -18,9 +19,9 @@ const Header = props => {
                     {currentUser && (
                         <ul>
                             <li>
-                                <span onClick={() => auth.signOut()}>
+                                <a onClick={() => auth.signOut()}>
                                     LOG OUT
-                                </span>
+                                </a>
                             </li>
                         </ul>
                     )}
@@ -49,4 +50,8 @@ Header.defaultProps = {
     currentUser: null
 }
 
-export default Header;
+const mapStateToProps = ({user}) => ({
+    currentUser: user.currentUser
+})
+
+export default connect(mapStateToProps, null)(Header);

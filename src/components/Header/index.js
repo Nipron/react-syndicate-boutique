@@ -1,12 +1,18 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import './styles.scss';
 import Logo from '../../assets/syndboutique.png';
 import {Link} from 'react-router-dom';
 import {auth} from '../../firebase/utils';
 
+
+const mapState = ({user}) => ({
+    currentUser: user.currentUser
+})
+
 const Header = props => {
-    const {currentUser} = props;
+    const {currentUser} = useSelector(mapState) ;
+
     return (
         <header className="header">
             <div className="wrap">
@@ -20,7 +26,8 @@ const Header = props => {
                         <ul>
                             <li>
                                 <Link to="/dashboard">
-y                                </Link>
+                                    My Account
+                                </Link>
                             </li>
                             <li>
                                 <a onClick={() => auth.signOut()}>
@@ -54,8 +61,4 @@ Header.defaultProps = {
     currentUser: null
 }
 
-const mapStateToProps = ({user}) => ({
-    currentUser: user.currentUser
-})
-
-export default connect(mapStateToProps, null)(Header);
+export default Header;

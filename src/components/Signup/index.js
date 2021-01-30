@@ -1,20 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import {resetAllAuthForms, signUpUser} from "../../redux/User/user.actions";
+import {useHistory} from 'react-router-dom';
+import {signUpUserStart} from "../../redux/User/user.actions";
 import './styles.scss';
 import FormInput from "../forms/FormInput";
 import Button from "../forms/Button";
 import AuthWrapper from "../AuthWrapper";
 
 const mapState = ({user}) => ({
-    signUpSuccess: user.signUpSuccess,
-    signUpError: user.signUpError
+    currentUser: user.currentUser,
+    userErr: user.userErr
 })
 
 const Signup = props => {
-    const {signUpSuccess, signUpError} = useSelector(mapState)
     const dispatch = useDispatch();
+    const history = useHistory();
+    const {currentUser, userErr} = useSelector(mapState)
     const [displayName, setDisplayName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,18 +23,17 @@ const Signup = props => {
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
-        if (signUpSuccess) {
+        if (currentUser) {
             reset();
-            dispatch(resetAllAuthForms());
-            props.history.push('/');
+            history.push('/');
         }
-    },[signUpSuccess]);
+    }, [currentUser]);
 
     useEffect(() => {
-        if (Array.isArray(signUpError) && signUpError.length > 0) {
-            setErrors(signUpError);
+        if (Array.isArray(userErr) && userErr.length > 0) {
+            setErrors(userErr);
         }
-    },[signUpError]);
+    }, [userErr]);
 
     const reset = () => {
         setDisplayName('');
@@ -45,27 +45,12 @@ const Signup = props => {
 
     const handleFormSubmit = event => {
         event.preventDefault();
-        dispatch(signUpUser({
+        dispatch(signUpUserStart({
             displayName,
             email,
             password,
             confirmPassword
         }))
-        /*if (password !== confirmPassword) {
-            const err = ['Password doesn\'t match'];
-            setErrors(err);
-            return;
-        }
-
-        try {
-            const {user} = await auth.createUserWithEmailAndPassword(email, password);
-
-            await handleUserProfile(user, {displayName});
-            reset();
-            props.history.push('/');
-        } catch (err) {
-            //console.log(err);
-        }*/
     }
 
     const configAuthWrapper = {
@@ -127,4 +112,4 @@ const Signup = props => {
 }
 
 
-export default withRouter(Signup);
+export default Signup;

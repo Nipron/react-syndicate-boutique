@@ -9,7 +9,6 @@ const mapState = ({user}) => ({
 const useAuth = props => {
     const {currentUser} = useSelector(mapState);
     const history = useHistory();
-    debugger;
 
     useEffect(() => {
         if (!currentUser) {

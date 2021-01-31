@@ -13,8 +13,6 @@ const useAdminAuth = props => {
     const {currentUser} = useSelector(mapState);
     const history = useHistory();
 
-    debugger;
-
     useEffect(() => {
         if (!checkUserIsAdmin(currentUser)) {
             history.push('/login')

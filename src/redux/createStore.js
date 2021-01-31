@@ -12,4 +12,6 @@ export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 sagaMiddleware.run(rootSaga);
 
+window.store = store;
+
 export default store;

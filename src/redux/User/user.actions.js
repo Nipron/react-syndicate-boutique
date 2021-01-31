@@ -7,7 +7,7 @@ export const emailSignInStart = userCredentials => ({
 
 export const signInSuccess = user => ({
     type: userTypes.SIGN_IN_SUCCESS,
-    payload: userTypes.CHECK_USER_SESSION
+    payload: user
 });
 
 export const checkUserSession = () => ({

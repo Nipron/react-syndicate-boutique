@@ -16,6 +16,8 @@ import Admin from "./pages/Admin";
 //layouts
 import MainLayout from "./layouts/MainLayout";
 import HomepageLayout from "./layouts/Homepagelayout";
+import DashBoardLayout from "./layouts/DashboardLayout";
+import AdminLayout from "./layouts/AdminLayout";
 //components
 import AdminToolbar from "./components/AdminToolbar";
 
@@ -55,17 +57,17 @@ const App = props => {
                 <Route path="/dashboard"
                        render={() => (
                            <WithAuth>
-                               <MainLayout>
+                               <DashBoardLayout>
                                    <Dashboard/>
-                               </MainLayout>
+                               </DashBoardLayout>
                            </WithAuth>
                        )}/>
                 <Route path="/admin"
                        render={() => (
                            <WithAdminAuth>
-                               <MainLayout>
+                               <AdminLayout>
                                    <Admin/>
-                               </MainLayout>
+                               </AdminLayout>
                            </WithAdminAuth>
                        )}/>
             </Switch>

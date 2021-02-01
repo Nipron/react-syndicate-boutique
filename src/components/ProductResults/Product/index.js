@@ -23,11 +23,6 @@ const Product = ({
             <div className="details">
                 <ul>
                     <li>
-                        <span>
-                            {productCategory}
-                        </span>
-                    </li>
-                    <li>
                         <span className="name">
                             {productName}
                         </span>

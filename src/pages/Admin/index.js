@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import './styles.scss';
 import Modal from './../../components/Modal';
 import FormInput from './../../components/forms/FormInput';
 import FormSelect from './../../components/forms/FormSelect';
 import Button from './../../components/forms/Button';
 import {addProductStart, deleteProductStart, fetchProductsStart} from "../../redux/Products/products.actions";
 import LoadMore from "../../components/LoadMore";
+import CKEditor from 'ckeditor4-react';
+import './styles.scss';
 
 const mapState = ({productsData}) => ({
     products: productsData.products
@@ -20,6 +21,7 @@ const Admin = props => {
     const [productName, setProductName] = useState('');
     const [productThumbnail, setProductThumbnail] = useState('')
     const [productPrice, setProductPrice] = useState(0);
+    const [productDescription, setProductDescription] = useState('');
 
     const {data, queryDoc, isLastPage} = products;
 
@@ -43,6 +45,7 @@ const Admin = props => {
         setProductName('');
         setProductThumbnail('');
         setProductPrice(0);
+        setProductDescription('');
     }
 
     const handleSubmit = e => {
@@ -52,7 +55,8 @@ const Admin = props => {
                 productCategory,
                 productName,
                 productThumbnail,
-                productPrice
+                productPrice,
+                productDescription
             })
         );
         resetForm();
@@ -89,8 +93,10 @@ const Admin = props => {
                             Add new product
                         </h2>
 
+                        <label>Category</label>
+
                         <FormSelect
-                            label="Category"
+                            //label="Category"
                             options={[{
                                 value: "mens",
                                 name: "Mens"
@@ -101,22 +107,28 @@ const Admin = props => {
                             handleChange={e => setProductCategory(e.target.value)}
                         />
 
+                        <label>Name</label>
+
                         <FormInput
-                            label="Name"
+                            //label="Name"
                             type="text"  //name="productName"
                             value={productName}  //placeholder="Product Name"
                             handleChange={e => setProductName(e.target.value)}
                         />
 
+                        <label>Main image URL</label>
+
                         <FormInput
-                            label="Main image URL"
+                            // label="Main image URL"
                             type="url" //name="ProductImageURL"
                             value={productThumbnail} //placeholder="Product Image URL"
                             handleChange={e => setProductThumbnail(e.target.value)}
                         />
 
+                        <label>Price</label>
+
                         <FormInput
-                            label="Price"
+                            //label="Price"
                             type="number"
                             min="0.00"
                             max="10000.00"
@@ -124,6 +136,14 @@ const Admin = props => {
                             value={productPrice}  //placeholder="Price"
                             handleChange={e => setProductPrice(e.target.value)}
                         />
+
+                        <label>Description</label>
+
+                        <br/>
+
+                        <CKEditor onChange={evt => setProductDescription(evt.editor.getData())}/>
+
+                        <br/>
 
                         <Button type="submit">
                             Add product

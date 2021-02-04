@@ -53,6 +53,10 @@
             text-decoration: none;
             text-transform: uppercase;
           }
+
+          a:hover {
+            color: #3498db;
+          }
         }
       }
     }
@@ -85,6 +89,10 @@
           color: black;
           text-decoration: none;
           text-transform: uppercase;
+        }
+
+        a:hover {
+          color: #3498db;
         }
       }
     }

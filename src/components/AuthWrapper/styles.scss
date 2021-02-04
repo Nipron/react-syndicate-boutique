@@ -1,23 +1,28 @@
 .authWrapper {
-  display: block;
+  display: grid;
   width: 100%;
+  text-align: center;
   max-width: 40rem;
   margin: 4rem auto 6rem;
-  border: 1px solid black;
+  background: #dde1e7;
+  border-radius: 10px;
+  box-shadow: -3px -3px 7px #ffffff73,
+  2px 2px 5px rgba(94,104,121,0.3);
 
   .wrap {
+    width: 100%;
     padding: 10px;
 
     h2 {
-      font-size: 2.2rem;
       line-height: 1;
-      font-weight: 400;
-      text-transform: uppercase;
       text-align: center;
       display: block;
       width: 100%;
       padding: 0;
-      margin: 0 auto 3rem;
+      font-size: 33px;
+      font-weight: 600;
+      margin-bottom: 35px;
+      color: #595959;
     }
   }
 }

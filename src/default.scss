@@ -1,5 +1,6 @@
 html {
   font-size: 10px;
+  caret-color: transparent
 }
 
 html,
@@ -23,13 +24,14 @@ body,
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.8rem;
   font-weight: 400;
   line-height: 1;
+  background-color: #dde1e7;
 }
 
-h1 {
+/*h1 {
   display: block;
   width: 100%;
   padding: 0;
@@ -41,9 +43,9 @@ h1 {
   font-weight: 400;
   text-transform: uppercase;
   border-bottom: #d3d3d3;
-}
+}*/
 
-h2 {
+/*h2 {
   display: block;
   width: 100%;
   padding: 0;
@@ -55,7 +57,7 @@ h2 {
   font-weight: 400;
   text-transform: uppercase;
   border-bottom: #d3d3d3;
-}
+}*/
 
 a {
   text-decoration: none;
@@ -63,9 +65,9 @@ a {
 }
 
 a, a:hover {
-  -webkit-transition: all .4s ease-in-out;
-  -moz-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
 .main {
@@ -86,7 +88,8 @@ a, a:hover {
 
   .sidebar {
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     width: 25.0rem;
     height: 100%;
     z-index: 1;
@@ -104,4 +107,42 @@ a, a:hover {
 
 .dashboardLayout {
   height: calc(100% - 6.5rem - 5.8rem);
+}
+
+.form-header {
+  font-size: 33px;
+  font-weight: 600;
+  margin-bottom: 35px;
+  color: #595959;
+}
+
+.forgot-pass {
+  text-align: left;
+  margin: 10px 0 10px 5px;
+}
+
+.forgot-pass a {
+  font-size: 16px;
+  color: #3498db;
+  text-decoration: none;
+}
+
+.forgot-pass:hover a {
+  text-decoration: underline;
+}
+
+.signup {
+  fon-size: 16px;
+  color: #595959;
+  margin: 10px 0;
+}
+
+.signup a{
+  font-size: 16px;
+  color: #3498db;
+  text-decoration: none;
+}
+
+.signup:hover a{
+  text-decoration: underline;
 }

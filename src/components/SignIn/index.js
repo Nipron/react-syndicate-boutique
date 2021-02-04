@@ -3,8 +3,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Link, useHistory} from 'react-router-dom';
 import {emailSignInStart, googleSignInStart} from "../../redux/User/user.actions";
 
-import './styles.scss';
-
 import Button from "../forms/Button";
 import FormInput from "../forms/FormInput";
 import AuthWrapper from "../AuthWrapper";
@@ -42,12 +40,12 @@ const SignIn = props => {
     }
 
     const configAuthWrapper = {
-        headline: 'Log In'
+        headline: 'Login Form'
     }
 
     return (
         <AuthWrapper {...configAuthWrapper}>
-            <div className="formWrap">
+            <div>
                 <form onSubmit={handleSubmit}>
 
                     <FormInput
@@ -66,10 +64,14 @@ const SignIn = props => {
                         handleChange={e => setPassword(e.target.value)}
                     />
 
+                    <div className="forgot-pass">
+                        <Link to="recovery">
+                            Forgot password?
+                        </Link>
+                    </div>
                     <Button type="submit">
                         Log In
                     </Button>
-
                     <div className="socialSignin">
                         <div className="row">
                             <Button onClick={handleGoogleSignIn}>
@@ -77,9 +79,10 @@ const SignIn = props => {
                             </Button>
                         </div>
                     </div>
-                    <div className="links">
-                        <Link to="recovery">
-                            Forgot password?
+                    <div className="signup">
+                        <span>Not a member? </span>
+                        <Link to="registration">
+                            sign up now
                         </Link>
                     </div>
                 </form>

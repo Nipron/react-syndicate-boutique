@@ -1,7 +1,12 @@
 import {auth} from '../../firebase/utils'
 import {takeLatest, put, all, call} from 'redux-saga/effects';
 import productsTypes from './products.types';
-import {handleAddProduct, handleDeleteProduct, handleFetchProduct, handleFetchProducts} from "./products.helpers";
+import {
+    handleAddProduct,
+    handleDeleteProduct,
+    handleFetchProduct,
+    handleFetchProducts
+} from "./products.helpers";
 import {fetchProductsStart, setProduct, setProducts} from "./products.actions";
 
 export function* addProduct({payload}) {

@@ -1,12 +1,30 @@
-import {firestore, storageRef} from './../../firebase/utils';
-import men from '../../assets/Casual-Street-Style-Outfits-For-This-Season-2015-1-701x958.jpg'
+import firebase, {firestore} from './../../firebase/utils';
 
 export const handleAddProduct = product => {
+
     return new Promise((resolve, reject) => {
-        firestore
-            .collection('products')
-            .doc()
-            .set(product)
+
+        product.productFileNameDate = new Date + ' ' + product.productFile.name;
+        let storageRef = firebase.storage().ref(`images/${product.productFileNameDate}`);
+        let uploadTask = storageRef.put(product.productFile)
+
+        uploadTask.then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                product.productThumbnail = url;
+                product.productFile = "null";
+            })
+            .then(() => {
+                firestore
+                    .collection('products')
+                    .doc()
+                    .set(product)
+                    .then(() => {
+                        resolve();
+                    })
+                    .catch(err => {
+                        reject(err);
+                    })
+            })
             .then(() => {
                 resolve();
             })
@@ -53,14 +71,24 @@ export const handleFetchProducts = ({filterType, startAfterDoc, persistProducts 
 }
 
 export const handleDeleteProduct = documentID => {
-    console.log(documentID, 1)
     return new Promise((resolve, reject) => {
         firestore
             .collection('products')
             .doc(documentID)
-            .delete()
+            .get()
+            .then(snapshot => {
+                firebase
+                    .storage()
+                    .ref(`images/${snapshot.data().productFileNameDate}`)
+                    .delete()
+            })
             .then(() => {
-                console.log(documentID, 2)
+                firestore
+                    .collection('products')
+                    .doc(documentID)
+                    .delete()
+            })
+            .then(() => {
                 resolve();
             })
             .catch(err => {
@@ -70,7 +98,7 @@ export const handleDeleteProduct = documentID => {
 }
 
 export const handleFetchProduct = productID => {
-    return new Promise ((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         firestore
             .collection('products')
             .doc(productID)

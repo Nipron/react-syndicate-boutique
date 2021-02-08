@@ -1,9 +1,9 @@
 .formRow {
 
-  height: 50px;
+  height: 4rem;
   width: 100%;
   display: flex;
-  margin: 20px 0;
+  margin: 0.15em 0 1em;
 
   label {
     position: absolute;
@@ -22,7 +22,7 @@
     outline: none;
     border: none;
     color: #595959;
-    border-radius: 25px;
+    border-radius: 2rem;
     background: #dde1e7;
     box-shadow: inset 3px 3px 5px #babecc,
     inset -3px -3px 5px #ffffff73;
@@ -37,4 +37,25 @@
   input:valid ~ label {
     opacity: 0;
   }
+}
+
+input[type=file]::-webkit-file-upload-button {
+  border: 2px solid #6c5ce7;
+  padding: .2em .4em;
+  border-radius: .2em;
+  background-color: #a29bfe;
+  transition: 1s;
+}
+
+input[type=file]::-webkit-file-upload-button:hover {
+  background-color: #81ecec;
+  border: 2px solid #00cec9;
+}
+
+.ck-editor__editable_inline {
+  height: 150px;
+}
+
+.ck-editor__editable {
+  max-height: 100px;
 }

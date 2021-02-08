@@ -19,9 +19,11 @@ const Admin = props => {
     const [hideModal, setHideModal] = useState(true);
     const [productCategory, setProductCategory] = useState('mens')
     const [productName, setProductName] = useState('');
-    const [productThumbnail, setProductThumbnail] = useState('')
+    const [productThumbnail, setProductThumbnail] = useState('');
+    const [productFile, setProductFile] = useState(null);
     const [productPrice, setProductPrice] = useState(0);
     const [productDescription, setProductDescription] = useState('');
+    const [productFileNameDate, setProductFileNameDate] = useState('');
 
     const {data, queryDoc, isLastPage} = products;
 
@@ -44,20 +46,25 @@ const Admin = props => {
         setProductCategory('mens');
         setProductName('');
         setProductThumbnail('');
+        setProductFile(null);
         setProductPrice(0);
         setProductDescription('');
+        setProductFileNameDate('')
     }
 
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(
             addProductStart({
-                productCategory,
-                productName,
-                productThumbnail,
-                productPrice,
-                productDescription
-            })
+                    productCategory,
+                    productName,
+                    productThumbnail,
+                    productPrice,
+                    productDescription,
+                    productFile,
+                    productFileNameDate
+                }
+            )
         );
         resetForm();
     };
@@ -68,6 +75,8 @@ const Admin = props => {
             persistProducts: data
         }))
     }
+
+    const handleSetFile = files => setProductFile(files[0])
 
     const configLoadMore = {
         onLoadMoreEvt: handleLoadMore,
@@ -116,6 +125,8 @@ const Admin = props => {
                             handleChange={e => setProductName(e.target.value)}
                         />
 
+                        {/*      IN CASE WE NEED TO UPLOAD PICS BY URL
+
                         <label>Main image URL</label>
 
                         <FormInput
@@ -123,7 +134,18 @@ const Admin = props => {
                             type="url" //name="ProductImageURL"
                             value={productThumbnail} //placeholder="Product Image URL"
                             handleChange={e => setProductThumbnail(e.target.value)}
+                        />*/}
+
+                        <label>Upload</label>
+
+                        <FormInput
+                            // label="Main image URL"
+                            type="file" //name="ProductImageURL"
+                           //value={productThumbnail} //placeholder="Product Image URL"
+                            onChange={(e) => handleSetFile(e.target.files)}
                         />
+
+                        {/* <input type="file" onChange={(e) => handleSetFile(e.target.files)}/> */}
 
                         <label>Price</label>
 
@@ -175,8 +197,6 @@ const Admin = props => {
                                         productPrice,
                                         documentID
                                     } = product;
-
-                                    debugger;
 
                                     return (
                                         <tr key={index}>

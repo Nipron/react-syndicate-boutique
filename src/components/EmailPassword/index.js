@@ -38,7 +38,7 @@ const EmailPassword = props => {
     }
 
     const configAuthWrapper = {
-        headline: 'RESET PASSWORD'
+        headline: 'Reset Password',
     }
 
     return (

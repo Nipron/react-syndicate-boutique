@@ -1,6 +1,6 @@
 import React from 'react';
-import ShopMen from '../../assets/MenHome.jpg';
-import ShopWomen from '../../assets/LadiesHome3.jpg';
+import forher from '../../assets/forher.jpg';
+import forhim from '../../assets/forhim.jpg';
 import './styles.scss';
 import {Link} from "react-router-dom";
 
@@ -12,16 +12,16 @@ const Directory = props => {
                     <div
                         className="item"
                         style={{
-                            backgroundImage: `url(${ShopWomen})`
-                        }}><a>Shop Ladies</a>
+                            backgroundImage: `url(${forher})`
+                        }}><a>FOR HER</a>
                     </div>
                 </Link>
                 <Link to="/search/mens">
                     <div
                         className="item"
                         style={{
-                            backgroundImage: `url(${ShopMen})`
-                        }}><a>Shop Men</a>
+                            backgroundImage: `url(${forhim})`
+                        }}><a>FOR HIM</a>
                     </div>
                 </Link>
             </div>
